@@ -42,5 +42,33 @@ public class ForLoops {
         }
         System.out.println("\nModified List:-");
         arr1.stream().filter(n->n%2==0).forEach(System.out::println);
+        //Sort Method
+        System.out.println("\nSort Method");
+        System.out.println("Original List:-");
+        for (int i:arr1){
+            System.out.print(i+" ");
+        }
+        System.out.println("\nModified List:-");
+        arr1.stream().filter(n->n%2==0).sorted().forEach(System.out::println);
+        //Reduce Method
+        System.out.println("\nReduce Method");
+        System.out.println("Original List:-");
+        for (int i:arr1){
+            System.out.print(i+" ");
+        }
+        System.out.println("\nCumulative Result:-");
+        int res=arr1.stream().filter(n->n%2==0).sorted().reduce(0,(c,e)->c+e);
+        System.out.println(res);
+        //Stream vs Parallel Stream
+        Random rand=new Random();
+        int size=10_000;
+        List<Integer> nums=new ArrayList<>(size);
+        for (int i = 1; i <= size; i++) {
+            nums.add(rand.nextInt(100));
+        }
+        int sum1=nums.stream().map(i->i*i).filter(i->i%2==0).reduce(0,(c,e)->c+e);
+        System.out.println("Simple Stream Method Result:- "+sum1);
+        int sum2=nums.parallelStream().map(i->i*i).filter(i->i%2==0).reduce(0,(c,e)->c-e);
+        System.out.println("Parallel Stream Method Result:- "+sum2);
     }
 }
